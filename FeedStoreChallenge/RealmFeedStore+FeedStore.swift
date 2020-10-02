@@ -28,12 +28,17 @@ extension RealmFeedStore: FeedStore {
       let cache = RealmCache(feed: realmFeed, timestamp: timestamp)
       let realm = try! self.realmFactory()
       
-      try! realm.write {
-        realm.deleteAll()
-        realm.add(cache)
+      do {
+        try realm.write {
+          realm.deleteAll()
+          realm.add(cache)
+        }
+        completion(nil)
+        
+      } catch {
+        completion(error)
+        
       }
-  
-      completion(nil)
     }
   }
   

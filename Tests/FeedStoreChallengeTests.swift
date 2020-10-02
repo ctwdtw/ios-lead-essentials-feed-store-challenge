@@ -20,7 +20,7 @@ class FeedStoreChallengeTests: XCTestCase, FeedStoreSpecs {
     //
     //  ***********************
   
-  private var strongRealmReference: Realm?
+  private var strongRealmReference: RealmSwift.Realm?
   
   override func setUp() {
       super.setUp()
@@ -33,7 +33,7 @@ class FeedStoreChallengeTests: XCTestCase, FeedStoreSpecs {
   }
   
   private func setupRealmStrongReference() {
-      strongRealmReference = try! Realm(configuration: unitTestRealmConfiguration())
+    strongRealmReference = try! RealmSwift.Realm(configuration: unitTestRealmConfiguration())
   }
   
   private func undoRealmSideEffects() {
@@ -122,12 +122,12 @@ class FeedStoreChallengeTests: XCTestCase, FeedStoreSpecs {
   
   private func defaultRealmFactory() -> RealmFeedStore.RealmFactory {
     return {
-      try! Realm(configuration: self.unitTestRealmConfiguration())
+      try! RealmSwift.Realm(configuration: self.unitTestRealmConfiguration())
     }
   }
   
-  private func unitTestRealmConfiguration() -> Realm.Configuration {
-    return Realm.Configuration(inMemoryIdentifier: "UnitTestInMemoryRealm")
+  private func unitTestRealmConfiguration() -> RealmSwift.Realm.Configuration {
+    return RealmSwift.Realm.Configuration(inMemoryIdentifier: "UnitTestInMemoryRealm")
   }
 	
 }
@@ -160,9 +160,12 @@ extension FeedStoreChallengeTests: FailableRetrieveFeedStoreSpecs {
 extension FeedStoreChallengeTests: FailableInsertFeedStoreSpecs {
 
 	func test_insert_deliversErrorOnInsertionError() {
-//		let sut = makeSUT()
-//
-//		assertThatInsertDeliversErrorOnInsertionError(on: sut)
+    let sut = makeSUT {
+      let realm = try! (self.defaultRealmFactory())()
+      return RealmErrorStub(realm: realm, stubbedError: self.anyNSError())
+    }
+
+		assertThatInsertDeliversErrorOnInsertionError(on: sut)
 	}
 
 	func test_insert_hasNoSideEffectsOnInsertionError() {
@@ -186,5 +189,33 @@ extension FeedStoreChallengeTests: FailableDeleteFeedStoreSpecs {
 //
 //		assertThatDeleteHasNoSideEffectsOnDeletionError(on: sut)
 	}
+
+}
+
+//MARK: - test doubles
+private class RealmErrorStub: FeedStoreChallenge.Realm {
+  private let realm: FeedStoreChallenge.Realm
+  private let stubbedError: Error
+  
+  init(realm: FeedStoreChallenge.Realm, stubbedError: Error) {
+    self.realm = realm
+    self.stubbedError = stubbedError
+  }
+  
+  func add(_ object: Object, update: RealmSwift.Realm.UpdatePolicy) {
+    realm.add(object, update: update)
+  }
+  
+  func objects<Element>(_ type: Element.Type) -> Results<Element> where Element : Object {
+    return realm.objects(type)
+  }
+  
+  func deleteAll() {
+    realm.deleteAll()
+  }
+  
+  func write<Result>(withoutNotifying tokens: [NotificationToken], _ block: (() throws -> Result)) throws -> Result {
+    throw stubbedError
+  }
 
 }
