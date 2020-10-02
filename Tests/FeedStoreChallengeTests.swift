@@ -169,9 +169,12 @@ extension FeedStoreChallengeTests: FailableInsertFeedStoreSpecs {
 	}
 
 	func test_insert_hasNoSideEffectsOnInsertionError() {
-//		let sut = makeSUT()
-//
-//		assertThatInsertHasNoSideEffectsOnInsertionError(on: sut)
+		let sut = makeSUT {
+      let realm = try! (self.defaultRealmFactory())()
+      return RealmErrorStub(realm: realm, stubbedError: self.anyNSError())
+    }
+
+		assertThatInsertHasNoSideEffectsOnInsertionError(on: sut)
 	}
 
 }
