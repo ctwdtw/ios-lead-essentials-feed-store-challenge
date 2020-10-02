@@ -11,7 +11,7 @@ import Foundation
 //MARK: - RealmFeedStore+FeedStore
 extension RealmFeedStore: FeedStore {
   public func deleteCachedFeed(completion: @escaping DeletionCompletion) {
-    realmQueue.async(flags: .barrier) {
+    executeWithBarrier {
       let realm = try! self.realmFactory()
       
       try! realm.write {
@@ -23,7 +23,7 @@ extension RealmFeedStore: FeedStore {
   }
   
   public func insert(_ feed: [LocalFeedImage], timestamp: Date, completion: @escaping InsertionCompletion) {
-    realmQueue.async(flags: .barrier) {
+    executeWithBarrier {
       let realmFeed = feed.toRealmModels()
       let cache = RealmCache(feed: realmFeed, timestamp: timestamp)
       let realm = try! self.realmFactory()
@@ -38,7 +38,7 @@ extension RealmFeedStore: FeedStore {
   }
   
   public func retrieve(completion: @escaping RetrievalCompletion) {
-    realmQueue.async {
+    execute {
       let realm = try! self.realmFactory()
       guard let cache = realm.objects(RealmCache.self).first else { completion(.empty); return }
       let localFeed = Array(cache.feed).toLocals()
