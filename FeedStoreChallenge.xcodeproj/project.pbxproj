@@ -25,6 +25,7 @@
 		63C0E24425270A8D0050E880 /* RealmFeedStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C0E24325270A8D0050E880 /* RealmFeedStore.swift */; };
 		63C0E24625270B010050E880 /* RealmCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C0E24525270B010050E880 /* RealmCache.swift */; };
 		63C0E24825270B380050E880 /* RealmFeedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C0E24725270B380050E880 /* RealmFeedImage.swift */; };
+		63C0E24A25270BF10050E880 /* RealmFeedStore+FeedStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C0E24925270BF10050E880 /* RealmFeedStore+FeedStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,7 @@
 		63C0E24325270A8D0050E880 /* RealmFeedStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmFeedStore.swift; sourceTree = "<group>"; };
 		63C0E24525270B010050E880 /* RealmCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmCache.swift; sourceTree = "<group>"; };
 		63C0E24725270B380050E880 /* RealmFeedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmFeedImage.swift; sourceTree = "<group>"; };
+		63C0E24925270BF10050E880 /* RealmFeedStore+FeedStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RealmFeedStore+FeedStore.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 				08CE2BA72285BCC600183A1B /* LocalFeedImage.swift */,
 				08CE2BA52285BCB600183A1B /* FeedStore.swift */,
 				63C0E24325270A8D0050E880 /* RealmFeedStore.swift */,
+				63C0E24925270BF10050E880 /* RealmFeedStore+FeedStore.swift */,
 				63C0E24525270B010050E880 /* RealmCache.swift */,
 				63C0E24725270B380050E880 /* RealmFeedImage.swift */,
 				08CE2B8F2285BBD100183A1B /* Info.plist */,
@@ -268,6 +271,7 @@
 				63C0E24425270A8D0050E880 /* RealmFeedStore.swift in Sources */,
 				63C0E24825270B380050E880 /* RealmFeedImage.swift in Sources */,
 				08CE2BA82285BCC600183A1B /* LocalFeedImage.swift in Sources */,
+				63C0E24A25270BF10050E880 /* RealmFeedStore+FeedStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
