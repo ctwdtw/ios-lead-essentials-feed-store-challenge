@@ -14,11 +14,17 @@ extension RealmFeedStore: FeedStore {
     executeWithBarrier {
       let realm = try! self.realmFactory()
       
-      try! realm.write {
-        realm.deleteAll()
+      do {
+        try realm.write {
+          realm.deleteAll()
+        }
+        completion(nil)
+        
+      } catch {
+        completion(error)
+      
       }
       
-      completion(nil)
     }
   }
   
