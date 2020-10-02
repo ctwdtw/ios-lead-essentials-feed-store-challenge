@@ -22,6 +22,9 @@
 		63C0E23625260E5E0050E880 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63C0E2312526078B0050E880 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		63C0E23825260E660050E880 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63C0E2322526078B0050E880 /* RealmSwift.framework */; };
 		63C0E23925260E660050E880 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63C0E2322526078B0050E880 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		63C0E24425270A8D0050E880 /* RealmFeedStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C0E24325270A8D0050E880 /* RealmFeedStore.swift */; };
+		63C0E24625270B010050E880 /* RealmCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C0E24525270B010050E880 /* RealmCache.swift */; };
+		63C0E24825270B380050E880 /* RealmFeedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C0E24725270B380050E880 /* RealmFeedImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +69,9 @@
 		08CE2BB42285BEF100183A1B /* FeedStoreChallengeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedStoreChallengeTests.swift; sourceTree = "<group>"; };
 		63C0E2312526078B0050E880 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
 		63C0E2322526078B0050E880 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
+		63C0E24325270A8D0050E880 /* RealmFeedStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmFeedStore.swift; sourceTree = "<group>"; };
+		63C0E24525270B010050E880 /* RealmCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmCache.swift; sourceTree = "<group>"; };
+		63C0E24725270B380050E880 /* RealmFeedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmFeedImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +120,9 @@
 			children = (
 				08CE2BA72285BCC600183A1B /* LocalFeedImage.swift */,
 				08CE2BA52285BCB600183A1B /* FeedStore.swift */,
+				63C0E24325270A8D0050E880 /* RealmFeedStore.swift */,
+				63C0E24525270B010050E880 /* RealmCache.swift */,
+				63C0E24725270B380050E880 /* RealmFeedImage.swift */,
 				08CE2B8F2285BBD100183A1B /* Info.plist */,
 			);
 			path = FeedStoreChallenge;
@@ -254,7 +263,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63C0E24625270B010050E880 /* RealmCache.swift in Sources */,
 				08CE2BA62285BCB600183A1B /* FeedStore.swift in Sources */,
+				63C0E24425270A8D0050E880 /* RealmFeedStore.swift in Sources */,
+				63C0E24825270B380050E880 /* RealmFeedImage.swift in Sources */,
 				08CE2BA82285BCC600183A1B /* LocalFeedImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
