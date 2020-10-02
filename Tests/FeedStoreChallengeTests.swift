@@ -167,6 +167,14 @@ extension FeedStoreChallengeTests: FailableInsertFeedStoreSpecs {
 
 		assertThatInsertDeliversErrorOnInsertionError(on: sut)
 	}
+  
+  func test_insert_deliversErrorOnRealmInitError() {
+    let sut = makeSUT {
+      throw self.anyNSError()
+    }
+
+    assertThatInsertDeliversErrorOnInsertionError(on: sut)
+  }
 
 	func test_insert_hasNoSideEffectsOnInsertionError() {
 		let sut = makeSUT {

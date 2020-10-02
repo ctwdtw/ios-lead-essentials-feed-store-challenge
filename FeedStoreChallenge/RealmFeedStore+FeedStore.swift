@@ -26,9 +26,9 @@ extension RealmFeedStore: FeedStore {
     executeWithBarrier {
       let realmFeed = feed.toRealmModels()
       let cache = RealmCache(feed: realmFeed, timestamp: timestamp)
-      let realm = try! self.realmFactory()
       
       do {
+        let realm = try self.realmFactory()
         try realm.write {
           realm.deleteAll()
           realm.add(cache)
