@@ -12,9 +12,8 @@ import Foundation
 extension RealmFeedStore: FeedStore {
   public func deleteCachedFeed(completion: @escaping DeletionCompletion) {
     executeWithBarrier {
-      let realm = try! self.realmFactory()
-      
       do {
+        let realm = try self.realmFactory()
         try realm.write {
           realm.deleteAll()
         }

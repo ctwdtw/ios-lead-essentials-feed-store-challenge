@@ -197,6 +197,14 @@ extension FeedStoreChallengeTests: FailableDeleteFeedStoreSpecs {
 
 		assertThatDeleteDeliversErrorOnDeletionError(on: sut)
 	}
+  
+  func test_delete_deliversErrorOnRealmInitError() {
+    let sut = makeSUT {
+      throw self.anyNSError()
+    }
+
+    assertThatDeleteDeliversErrorOnDeletionError(on: sut)
+  }
 
 	func test_delete_hasNoSideEffectsOnDeletionError() {
 		let sut = makeSUT()
