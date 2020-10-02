@@ -11,7 +11,7 @@ import FeedStoreChallenge
 import RealmSwift
 
 class FeedStoreIntegrationTests: XCTestCase {
-
+    
     //  ***********************
     //
     //  Uncomment and implement the following tests if your
@@ -21,7 +21,7 @@ class FeedStoreIntegrationTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-     
+        
         setupEmptyStoreState()
     }
     
@@ -33,18 +33,18 @@ class FeedStoreIntegrationTests: XCTestCase {
     
     func test_retrieve_deliversNoEmptyOnEmptyCache() {
         let sut = makeSUT()
-
+        
         expect(sut, toRetrieve: .empty)
     }
-
+    
     func test_retrieve_deliversFeedInsertedOnAnotherInstance() {
         let storeToInsert = makeSUT()
         let storeToLoad = makeSUT()
         let feed = uniqueImageFeed()
         let timestamp = Date()
-
+        
         insert((feed, timestamp), to: storeToInsert)
-
+        
         expect(storeToLoad, toRetrieve: .found(feed: feed, timestamp: timestamp))
     }
     
@@ -52,13 +52,13 @@ class FeedStoreIntegrationTests: XCTestCase {
         let storeToInsert = makeSUT()
         let storeToOverride = makeSUT()
         let storeToLoad = makeSUT()
-
+        
         insert((uniqueImageFeed(), Date()), to: storeToInsert)
-
+        
         let latestFeed = uniqueImageFeed()
         let latestTimestamp = Date()
         insert((latestFeed, latestTimestamp), to: storeToOverride)
-
+        
         expect(storeToLoad, toRetrieve: .found(feed: latestFeed, timestamp: latestTimestamp))
     }
     
@@ -66,40 +66,40 @@ class FeedStoreIntegrationTests: XCTestCase {
         let storeToInsert = makeSUT()
         let storeToDelete = makeSUT()
         let storeToLoad = makeSUT()
-
+        
         insert((uniqueImageFeed(), Date()), to: storeToInsert)
-
+        
         deleteCache(from: storeToDelete)
-
+        
         expect(storeToLoad, toRetrieve: .empty)
     }
     
     // - MARK: Helpers
     
     private func makeSUT() -> FeedStore {
-      let sut = RealmFeedStore {
-        let realm = try! RealmSwift.Realm(configuration: self.integrationTestRealmConfiguration())
-        return realm
-      }
-      
-      return sut
+        let sut = RealmFeedStore {
+            let realm = try! RealmSwift.Realm(configuration: self.integrationTestRealmConfiguration())
+            return realm
+        }
+        
+        return sut
     }
     
     private func integrationTestRealmConfiguration() -> RealmSwift.Realm.Configuration {
-      return RealmSwift.Realm.Configuration(fileURL: realmURLForIntegrationTest())
+        return RealmSwift.Realm.Configuration(fileURL: realmURLForIntegrationTest())
     }
-  
+    
     private func setupEmptyStoreState() {
-      try? FileManager.default.removeItem(at: realmURLForIntegrationTest())
+        try? FileManager.default.removeItem(at: realmURLForIntegrationTest())
     }
-
+    
     private func undoStoreSideEffects() {
-      try? FileManager.default.removeItem(at: realmURLForIntegrationTest())
+        try? FileManager.default.removeItem(at: realmURLForIntegrationTest())
     }
-  
+    
     private func realmURLForIntegrationTest() -> URL {
-      let cachePath = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
-      return cachePath.appendingPathComponent("feedStoreIntegrationTest.realm")
+        let cachePath = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
+        return cachePath.appendingPathComponent("feedStoreIntegrationTest.realm")
     }
     
 }

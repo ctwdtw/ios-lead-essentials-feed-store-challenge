@@ -10,13 +10,13 @@ import Foundation
 import RealmSwift
 
 class RealmCache: Object {
-  @objc dynamic private(set) var timestamp: Date = Date()
-  let feed = List<RealmFeedImage>()
-  
-  convenience init(feed: [RealmFeedImage], timestamp: Date) {
-    self.init()
-    self.feed.append(objectsIn: feed)
-    self.timestamp = timestamp
-  }
-  
+    @objc dynamic private(set) var timestamp: Date = Date()
+    let feed = List<RealmFeedImage>()
+    
+    convenience init(feed: [RealmFeedImage], timestamp: Date) {
+        self.init()
+        self.feed.append(objectsIn: feed)
+        self.timestamp = timestamp
+    }
+    
 }

@@ -10,27 +10,27 @@ import Foundation
 import RealmSwift
 
 public class RealmFeedStore {
-  private let realmQueue = DispatchQueue(label: "feedStore.realm.queue", attributes: .concurrent)
-  
-  let realmFactory: RealmFactory
-  
-  public typealias RealmFactory = () throws -> Realm
-  
-  public init(factory: @escaping RealmFactory) {
-    self.realmFactory = factory
-  }
-  
-  func execute(_ op: @escaping () -> Void) {
-    realmQueue.async {
-      op()
+    private let realmQueue = DispatchQueue(label: "feedStore.realm.queue", attributes: .concurrent)
+    
+    let realmFactory: RealmFactory
+    
+    public typealias RealmFactory = () throws -> Realm
+    
+    public init(factory: @escaping RealmFactory) {
+        self.realmFactory = factory
     }
-  }
-  
-  func executeWithBarrier(_ op: @escaping () -> Void) {
-    realmQueue.async(flags: .barrier) {
-      op()
+    
+    func execute(_ op: @escaping () -> Void) {
+        realmQueue.async {
+            op()
+        }
     }
-  }
-  
+    
+    func executeWithBarrier(_ op: @escaping () -> Void) {
+        realmQueue.async(flags: .barrier) {
+            op()
+        }
+    }
+    
 }
 
