@@ -50,7 +50,15 @@ public class RealmFeedStore: FeedStore {
   }
   
   public func deleteCachedFeed(completion: @escaping DeletionCompletion) {
-    completion(nil)
+    realmQueue.async(flags: .barrier) {
+      let realm = try! self.realmFactory()
+      
+      try! realm.write {
+        realm.deleteAll()
+      }
+      
+      completion(nil)
+    }
   }
   
   public func insert(_ feed: [LocalFeedImage], timestamp: Date, completion: @escaping InsertionCompletion) {
@@ -176,9 +184,9 @@ class FeedStoreChallengeTests: XCTestCase, FeedStoreSpecs {
 	}
 
 	func test_delete_emptiesPreviouslyInsertedCache() {
-//		let sut = makeSUT()
-//
-//		assertThatDeleteEmptiesPreviouslyInsertedCache(on: sut)
+		let sut = makeSUT()
+
+		assertThatDeleteEmptiesPreviouslyInsertedCache(on: sut)
 	}
 
 	func test_storeSideEffects_runSerially() {
