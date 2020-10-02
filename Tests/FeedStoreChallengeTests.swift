@@ -4,6 +4,30 @@
 
 import XCTest
 import FeedStoreChallenge
+import RealmSwift
+
+public class RealmFeedStore: FeedStore {
+  private let realm: Realm
+  
+  public init(realm: Realm) {
+    self.realm = realm
+  }
+  
+  public func deleteCachedFeed(completion: @escaping DeletionCompletion) {
+    
+  }
+  
+  public func insert(_ feed: [LocalFeedImage], timestamp: Date, completion: @escaping InsertionCompletion) {
+    
+  }
+  
+  public func retrieve(completion: @escaping RetrievalCompletion) {
+    completion(.empty)
+  }
+  
+}
+
+
 
 class FeedStoreChallengeTests: XCTestCase, FeedStoreSpecs {
 	
@@ -20,9 +44,9 @@ class FeedStoreChallengeTests: XCTestCase, FeedStoreSpecs {
     //  ***********************
 
 	func test_retrieve_deliversEmptyOnEmptyCache() {
-//		let sut = makeSUT()
-//
-//		assertThatRetrieveDeliversEmptyOnEmptyCache(on: sut)
+		let sut = makeSUT()
+
+		assertThatRetrieveDeliversEmptyOnEmptyCache(on: sut)
 	}
 
 	func test_retrieve_hasNoSideEffectsOnEmptyCache() {
@@ -93,9 +117,11 @@ class FeedStoreChallengeTests: XCTestCase, FeedStoreSpecs {
 	
 	// - MARK: Helpers
 	
-	private func makeSUT() -> FeedStore {
-		fatalError("Must be implemented")
-	}
+  private func makeSUT() -> FeedStore {
+    let realm = try! Realm(configuration: Realm.Configuration(inMemoryIdentifier: "UnitTestInMemoryRealm"))
+    let sut = RealmFeedStore(realm: realm)
+    return sut
+  }
 	
 }
 
