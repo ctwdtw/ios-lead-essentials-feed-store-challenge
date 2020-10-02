@@ -58,7 +58,10 @@ public class RealmFeedStore: FeedStore {
       let realmFeed = feed.map { RealmFeedImage(id: $0.id.uuidString, imageDescription: $0.description, location: $0.location, url: $0.url.absoluteString) }
       let cache = RealmCache(feed: realmFeed, timestamp: timestamp)
       let realm = try! self.realmFactory()
-      try! realm.write { realm.add(cache) }
+      try! realm.write {
+        realm.deleteAll()
+        realm.add(cache)
+      }
   
       completion(nil)
     }
@@ -149,9 +152,9 @@ class FeedStoreChallengeTests: XCTestCase, FeedStoreSpecs {
 	}
 
 	func test_insert_overridesPreviouslyInsertedCacheValues() {
-//		let sut = makeSUT()
-//
-//		assertThatInsertOverridesPreviouslyInsertedCacheValues(on: sut)
+		let sut = makeSUT()
+
+		assertThatInsertOverridesPreviouslyInsertedCacheValues(on: sut)
 	}
 
 	func test_delete_deliversNoErrorOnEmptyCache() {
