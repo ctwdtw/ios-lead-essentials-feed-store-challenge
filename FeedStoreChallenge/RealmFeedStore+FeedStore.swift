@@ -39,11 +39,20 @@ extension RealmFeedStore: FeedStore {
   
   public func retrieve(completion: @escaping RetrievalCompletion) {
     execute {
-      let realm = try! self.realmFactory()
-      guard let cache = realm.objects(RealmCache.self).first else { completion(.empty); return }
-      let localFeed = Array(cache.feed).toLocals()
-      
-      completion(.found(feed: localFeed, timestamp: cache.timestamp))
+      do {
+        let realm = try self.realmFactory()
+        
+        guard let cache = realm.objects(RealmCache.self).first else {
+          completion(.empty); return
+        }
+        
+        let localFeed = Array(cache.feed).toLocals()
+        completion(.found(feed: localFeed, timestamp: cache.timestamp))
+        
+      } catch {
+        completion(.failure(error))
+        
+      }
     }
   }
 }
