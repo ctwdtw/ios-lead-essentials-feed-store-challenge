@@ -6,6 +6,38 @@ import XCTest
 import FeedStoreChallenge
 import RealmSwift
 
+class RealmFeedImage: Object {
+  @objc dynamic private(set) var id: String = ""
+  @objc dynamic private(set) var imageDescription: String? = nil
+  @objc dynamic private(set) var location: String? = nil
+  @objc dynamic private(set) var url: String = ""
+  
+  override static func primaryKey() -> String? {
+    return "id"
+  }
+  
+  convenience init(id: String, imageDescription: String?, location: String?, url: String) {
+    self.init()
+    self.id = id
+    self.imageDescription = imageDescription
+    self.location = location
+    self.url = url
+  }
+  
+}
+
+class RealmCache: Object {
+  @objc dynamic private(set) var timestamp: Date = Date()
+  let feed = List<RealmFeedImage>()
+  
+  convenience init(feed: [RealmFeedImage], timestamp: Date) {
+    self.init()
+    self.feed.append(objectsIn: feed)
+    self.timestamp = timestamp
+  }
+  
+}
+
 public class RealmFeedStore: FeedStore {
   private let realm: Realm
   
@@ -18,11 +50,19 @@ public class RealmFeedStore: FeedStore {
   }
   
   public func insert(_ feed: [LocalFeedImage], timestamp: Date, completion: @escaping InsertionCompletion) {
+    let realmFeed = feed.map { RealmFeedImage(id: $0.id.uuidString, imageDescription: $0.description, location: $0.location, url: $0.url.absoluteString) }
+    let cache = RealmCache(feed: realmFeed, timestamp: timestamp)
     
+    try! realm.write { realm.add(cache) }
+    
+    completion(nil)
   }
   
   public func retrieve(completion: @escaping RetrievalCompletion) {
-    completion(.empty)
+    guard let cache = realm.objects(RealmCache.self).first else { completion(.empty); return }
+    let localFeed = cache.feed.map { LocalFeedImage(id: UUID(uuidString: $0.id)!, description: $0.imageDescription, location: $0.location, url: URL(string: $0.url)!) }
+    
+    completion(.found(feed: Array(localFeed), timestamp: cache.timestamp))
   }
   
 }
@@ -56,9 +96,9 @@ class FeedStoreChallengeTests: XCTestCase, FeedStoreSpecs {
 	}
 
 	func test_retrieve_deliversFoundValuesOnNonEmptyCache() {
-//		let sut = makeSUT()
-//
-//		assertThatRetrieveDeliversFoundValuesOnNonEmptyCache(on: sut)
+		let sut = makeSUT()
+
+		assertThatRetrieveDeliversFoundValuesOnNonEmptyCache(on: sut)
 	}
 
 	func test_retrieve_hasNoSideEffectsOnNonEmptyCache() {
