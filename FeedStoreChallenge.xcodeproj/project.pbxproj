@@ -18,15 +18,15 @@
 		08CE2BB22285BCE700183A1B /* XCTestCase+FailableDeleteFeedStoreSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CE2BAD2285BCE700183A1B /* XCTestCase+FailableDeleteFeedStoreSpecs.swift */; };
 		08CE2BB32285BCE700183A1B /* XCTestCase+FailableInsertFeedStoreSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CE2BAE2285BCE700183A1B /* XCTestCase+FailableInsertFeedStoreSpecs.swift */; };
 		08CE2BB52285BEF100183A1B /* FeedStoreChallengeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CE2BB42285BEF100183A1B /* FeedStoreChallengeTests.swift */; };
-		63C0E23525260E5E0050E880 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63C0E2312526078B0050E880 /* Realm.framework */; };
-		63C0E23625260E5E0050E880 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63C0E2312526078B0050E880 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		63C0E23825260E660050E880 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63C0E2322526078B0050E880 /* RealmSwift.framework */; };
-		63C0E23925260E660050E880 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63C0E2322526078B0050E880 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		63C0E24425270A8D0050E880 /* RealmFeedStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C0E24325270A8D0050E880 /* RealmFeedStore.swift */; };
 		63C0E24625270B010050E880 /* RealmCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C0E24525270B010050E880 /* RealmCache.swift */; };
 		63C0E24825270B380050E880 /* RealmFeedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C0E24725270B380050E880 /* RealmFeedImage.swift */; };
 		63C0E24A25270BF10050E880 /* RealmFeedStore+FeedStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C0E24925270BF10050E880 /* RealmFeedStore+FeedStore.swift */; };
 		63C0E24C2527476F0050E880 /* Realm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C0E24B2527476F0050E880 /* Realm.swift */; };
+		63C113BE252833C300343D25 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63C113BA2528334300343D25 /* RealmSwift.framework */; };
+		63C113BF252833C300343D25 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63C113BA2528334300343D25 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		63C113C0252833C300343D25 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63C113BB2528334300343D25 /* Realm.framework */; };
+		63C113C1252833C300343D25 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63C113BB2528334300343D25 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,14 +40,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		63C0E23725260E5E0050E880 /* Embed Frameworks */ = {
+		63C113C2252833C300343D25 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
-				63C0E23925260E660050E880 /* RealmSwift.framework in Embed Frameworks */,
-				63C0E23625260E5E0050E880 /* Realm.framework in Embed Frameworks */,
+				63C113C1252833C300343D25 /* Realm.framework in Embed Frameworks */,
+				63C113BF252833C300343D25 /* RealmSwift.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -69,13 +69,13 @@
 		08CE2BAD2285BCE700183A1B /* XCTestCase+FailableDeleteFeedStoreSpecs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+FailableDeleteFeedStoreSpecs.swift"; sourceTree = "<group>"; };
 		08CE2BAE2285BCE700183A1B /* XCTestCase+FailableInsertFeedStoreSpecs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+FailableInsertFeedStoreSpecs.swift"; sourceTree = "<group>"; };
 		08CE2BB42285BEF100183A1B /* FeedStoreChallengeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedStoreChallengeTests.swift; sourceTree = "<group>"; };
-		63C0E2312526078B0050E880 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
-		63C0E2322526078B0050E880 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
 		63C0E24325270A8D0050E880 /* RealmFeedStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmFeedStore.swift; sourceTree = "<group>"; };
 		63C0E24525270B010050E880 /* RealmCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmCache.swift; sourceTree = "<group>"; };
 		63C0E24725270B380050E880 /* RealmFeedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmFeedImage.swift; sourceTree = "<group>"; };
 		63C0E24925270BF10050E880 /* RealmFeedStore+FeedStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RealmFeedStore+FeedStore.swift"; sourceTree = "<group>"; };
 		63C0E24B2527476F0050E880 /* Realm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Realm.swift; sourceTree = "<group>"; };
+		63C113BA2528334300343D25 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
+		63C113BB2528334300343D25 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,8 +83,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				63C0E23825260E660050E880 /* RealmSwift.framework in Frameworks */,
-				63C0E23525260E5E0050E880 /* Realm.framework in Frameworks */,
+				63C113C0252833C300343D25 /* Realm.framework in Frameworks */,
+				63C113BE252833C300343D25 /* RealmSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,8 +105,7 @@
 				08CE2B8D2285BBD100183A1B /* FeedStoreChallenge */,
 				08CE2B982285BBD100183A1B /* Tests */,
 				08CE2B8C2285BBD100183A1B /* Products */,
-				63C0E2312526078B0050E880 /* Realm.framework */,
-				63C0E2322526078B0050E880 /* RealmSwift.framework */,
+				63C113B82528334300343D25 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -158,6 +157,23 @@
 			path = FeedStoreSpecs;
 			sourceTree = "<group>";
 		};
+		63C113B82528334300343D25 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				63C113B92528334300343D25 /* Realm_5.4.7 */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		63C113B92528334300343D25 /* Realm_5.4.7 */ = {
+			isa = PBXGroup;
+			children = (
+				63C113BA2528334300343D25 /* RealmSwift.framework */,
+				63C113BB2528334300343D25 /* Realm.framework */,
+			);
+			path = Realm_5.4.7;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -179,7 +195,7 @@
 				08CE2B872285BBD100183A1B /* Sources */,
 				08CE2B882285BBD100183A1B /* Frameworks */,
 				08CE2B892285BBD100183A1B /* Resources */,
-				63C0E23725260E5E0050E880 /* Embed Frameworks */,
+				63C113C2252833C300343D25 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -445,6 +461,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Realm_5.4.7",
 				);
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = FeedStoreChallenge/Info.plist;
@@ -477,6 +494,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Realm_5.4.7",
 				);
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = FeedStoreChallenge/Info.plist;
