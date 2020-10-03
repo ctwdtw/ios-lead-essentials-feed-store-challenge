@@ -117,6 +117,7 @@ class FeedStoreChallengeTests: XCTestCase, FeedStoreSpecs {
     private func makeSUT(factory: RealmFeedStore.RealmFactory? = nil) -> FeedStore {
         let f = factory == nil ? defaultRealmFactory() : factory!
         let sut = RealmFeedStore (factory: f)
+        trackForMemoryLeaks(sut)
         return sut
     }
     

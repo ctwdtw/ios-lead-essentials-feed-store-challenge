@@ -81,7 +81,7 @@ class FeedStoreIntegrationTests: XCTestCase {
             let realm = try! RealmSwift.Realm(configuration: self.integrationTestRealmConfiguration())
             return realm
         }
-        
+        trackForMemoryLeaks(sut)
         return sut
     }
     
