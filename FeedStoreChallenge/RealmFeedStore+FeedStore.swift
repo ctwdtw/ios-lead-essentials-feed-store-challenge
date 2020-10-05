@@ -70,11 +70,16 @@ extension RealmFeedStore: FeedStore {
 //MARK: - helpers
 private extension Array where Element == RealmFeedImage {
     func toLocals() -> [LocalFeedImage] {
-        let localFeed = map { LocalFeedImage(id: UUID(uuidString: $0.id)!,
-                                             description: $0.imageDescription,
-                                             location: $0.location,
-                                             url: URL(string: $0.url)!) }
-        return localFeed
+        return compactMap {
+            guard let uuid = UUID(uuidString: $0.id) else { return nil }
+            
+            guard let url = URL(string: $0.url) else { return nil }
+            
+            return LocalFeedImage(id: uuid,
+                                  description: $0.imageDescription,
+                                  location: $0.location,
+                                  url: url)
+        }
     }
 }
 

@@ -31,7 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		08CE2B962285BBD100183A1B /* PBXContainerItemProxy */ = {
+		637CF10A252AC7C40063614D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 08CE2B822285BBD100183A1B /* Project object */;
 			proxyType = 1;
@@ -220,7 +220,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				08CE2B972285BBD100183A1B /* PBXTargetDependency */,
+				637CF10B252AC7C40063614D /* PBXTargetDependency */,
 			);
 			name = Tests;
 			productName = FeedStoreChallengeTests;
@@ -317,10 +317,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		08CE2B972285BBD100183A1B /* PBXTargetDependency */ = {
+		637CF10B252AC7C40063614D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 08CE2B8A2285BBD100183A1B /* FeedStoreChallenge */;
-			targetProxy = 08CE2B962285BBD100183A1B /* PBXContainerItemProxy */;
+			targetProxy = 637CF10A252AC7C40063614D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

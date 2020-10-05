@@ -3,7 +3,7 @@
 //
 
 import XCTest
-import FeedStoreChallenge
+@testable import FeedStoreChallenge
 import RealmSwift
 
 class FeedStoreChallengeTests: XCTestCase, FeedStoreSpecs {
@@ -112,6 +112,19 @@ class FeedStoreChallengeTests: XCTestCase, FeedStoreSpecs {
         assertThatSideEffectsRunSerially(on: sut)
     }
     
+    func test_retrieve_deliversValidValueOnCacheContainsSomeInvalidValues() {
+        let date = Date()
+        let uuid = UUID()
+        prepareFlawedCache(of: date,
+                          validUUIDstring: uuid.uuidString,
+                          invalidUUIDstring: "invalidUUIDString",
+                          invalidURLstring: "invalidURLString%")
+        
+        let sut = makeSUT()
+        
+        expect(sut, toRetrieve: .found(feed: [LocalFeedImage(id: uuid, description: "any-description", location: "any-location", url: anyURL())], timestamp: date))
+    }
+    
     // - MARK: Helpers
     
     private func makeSUT(factory: RealmFeedStore.RealmFactory? = nil) -> FeedStore {
@@ -129,6 +142,38 @@ class FeedStoreChallengeTests: XCTestCase, FeedStoreSpecs {
     
     private func unitTestRealmConfiguration() -> RealmSwift.Realm.Configuration {
         return RealmSwift.Realm.Configuration(inMemoryIdentifier: "UnitTestInMemoryRealm")
+    }
+    
+    private func prepareFlawedCache(of date: Date,
+                                   validUUIDstring: String,
+                                   invalidUUIDstring: String,
+                                   invalidURLstring: String) {
+        
+        let cache = flawedCache(of: date,
+                                validUUIDstring: validUUIDstring,
+                                invalidUUIDstring: invalidUUIDstring,
+                                invalidURLstring: invalidURLstring)
+        
+        try! strongRealmReference?.write({
+            strongRealmReference?.add(cache)
+        })
+    }
+    
+    private func flawedCache(of date: Date,
+                             validUUIDstring: String,
+                             invalidUUIDstring: String,
+                             invalidURLstring: String) -> RealmCache {
+        
+        let image0 = RealmFeedImage(id: validUUIDstring, imageDescription: "any-description", location: "any-location", url: anyURL().absoluteString)
+        
+        let image1 = RealmFeedImage(id: invalidUUIDstring, imageDescription: "any-description", location: "any-location", url: anyURL().absoluteString)
+        
+        
+        let image2 = RealmFeedImage(id: UUID().uuidString, imageDescription: "any-description", location: "any-location", url: invalidURLstring)
+        
+        let cache = RealmCache(feed: [image0, image1, image2], timestamp: date)
+        
+        return cache
     }
     
 }
